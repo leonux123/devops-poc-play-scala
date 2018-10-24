@@ -12,9 +12,22 @@ pipeline {
 	                sh 'sbt dist'
             }
         }
-	     stage('Deploy') {
+	      stage('AWS Provisioning') {
 	            steps {
-	                sh 'echo "Deploy done!"'
+	                sh './jenkins/scripts/EC2_on-demand.sh start'
+            }
+        }
+        stage('Deliver for development') {
+            when {
+                branch 'master' 
+            }
+            steps {
+                sh 'export IP=$(cat ip_from_file) && ssh -oStrictHostKeyChecking=no -i /home/leonux/aws/MyKeyPair.pem ec2-user@$IP ./deploy.sh'
+	        sh 'export IP=$(cat ip_from_file) && echo "Your app is ready: http://$IP:9000"'
+		input message: 'Finished using the web site? (Click "Proceed" to continue)'
+	        sh 'export IP=$(cat ip_from_file) && ssh -i /home/leonux/aws/MyKeyPair.pem ec2-user@$IP ./kill.sh'
+		    sh 'echo "Terminate Task: Started"'
+		    sh './jenkins/scripts/EC2_on-demand.sh terminate'
             }
         }
     }
