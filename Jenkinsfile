@@ -14,7 +14,7 @@ pipeline {
         }
 	    stage('Deliver for DEV') {
             when {
-                branch 'PR-9'
+                branch 'PR-*'
             }
             steps {
 		    sh 'echo "AWS Provisioning Task: Started"'
