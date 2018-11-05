@@ -19,7 +19,7 @@ class HomeController @Inject()(cc: ControllerComponents) (implicit assetsFinder:
    * a path of `/`.
    */
   def index = Action {
-    Ok(views.html.index("ESS POC v1.6 - master"))
+    Ok(views.html.index("ESS POC v2.1 - master"))
   }
 
 }
