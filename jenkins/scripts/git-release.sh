@@ -8,7 +8,7 @@ BRANCH="master"
 GITHUB_ACCESS_TOKEN="309c4b9c922c4c03cf03db4420638f3c02d11109"
 
 # get repo name and owner
-REPO_REMOTE=$(git config --get remote.origin.url)
+REPO_REMOTE=https://github.com/leonux123/devops-poc-aws-ansible-cicd.git
 
 if [ -z $REPO_REMOTE ]; then
 	echo "Not a git repository"
