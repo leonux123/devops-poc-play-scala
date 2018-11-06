@@ -40,6 +40,7 @@ pipeline {
 	        sh 'export IP=$(cat ip_from_file) && ssh -i /home/leonux/aws/MyKeyPair.pem ec2-user@$IP ./kill.sh'
 		    sh 'echo "Terminate Task: Started"'
 		    sh './jenkins/scripts/EC2_on-demand.sh terminate'
+		    sh './jenkins/scripts/git-release.sh'
             }
         }
     }
