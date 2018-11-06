@@ -5,7 +5,7 @@ VERSION=$(shuf -i 1-250 -n 1)
 DRAFT="false"
 PRE="true"
 BRANCH="master"
-GITHUB_ACCESS_TOKEN="309c4b9c922c4c03cf03db4420638f3c02d11109"
+GITHUB_ACCESS_TOKEN=$(cat /home/leonux/aws/Git-token)
 
 # get repo name and owner
 REPO_REMOTE=https://github.com/leonux123/devops-poc-aws-ansible-cicd.git
